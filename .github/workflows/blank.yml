@@ -21,7 +21,7 @@ jobs:
       # Runs a single command using the runners shell
       - name: install
         run: |
-            sudo apt-get install curl
+            sudo timedatectl set-timezone Asia/Shanghai
             curl -s https://install.speedtest.net/app/cli/install.deb.sh | sudo bash
             sudo apt-get install speedtest
 
