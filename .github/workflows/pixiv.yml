@@ -1,0 +1,27 @@
+name: pixiv-limit-test
+on:
+  workflow_dispatch:
+
+jobs:
+  pixiv-limit-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "pixiv-limit-test"
+        uses: actions/checkout@v3
+
+      # 使用python环境
+      - name: Set up Python 3.x
+        uses: actions/setup-python@v2
+        with:
+          # Semantic version range syntax or exact version of a Python version
+          python-version: '3.x'
+          # Optional - x64 or x86 architecture, defaults to x64
+          architecture: 'x64'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run pixiv-limit-test
+        env:
+          PIXIV_ACCESS_TOKEN: ${{ secrets.PIXIV_ACCESS_TOKEN }}
+        run: python ./scripts/test-pixiv.py
